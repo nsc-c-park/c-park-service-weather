@@ -29,7 +29,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
             cmd.Parameters.AddWithValue("@wind", parkingInfo.wind.speed);
             cmd.Parameters.AddWithValue("@pressure", parkingInfo.main.pressure);
             cmd.Parameters.AddWithValue("@humidity", parkingInfo.main.humidity);
-            cmd.Parameters.AddWithValue("@description", "Jest git");
+            cmd.Parameters.AddWithValue("@description", "Test git deploy");
             cmd.ExecuteNonQuery();
         }
     }
