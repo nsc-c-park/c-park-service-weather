@@ -2,10 +2,8 @@
   "name": "c-park-service-weather",
   "version": "1.0.0",
   "description": "Microservice for domain 'weather'",
-  "main": "dist/index",
+  "main": "dist/index.js",
   "scripts": {
-    "prestart": "tsc",
-    "start": "node dist/index",
     "postinstall": "tsc",
     "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts"
   },
@@ -53,6 +51,7 @@
     "knex": "^0.12.9",
     "morgan": "^1.8.1",
     "mssql": "^3.3.0",
-    "typescript": "^2.2.2"
+    "typescript": "^2.2.2",
+    "typings": "^2.1.1"
   }
 }
