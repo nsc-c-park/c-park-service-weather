@@ -2,9 +2,9 @@
   "name": "c-park-service-weather",
   "version": "1.0.0",
   "description": "Microservice for domain 'weather'",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/index.js",
     "postinstall": "tsc",
     "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts"
   },
