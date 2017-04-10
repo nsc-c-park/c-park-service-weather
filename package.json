@@ -5,7 +5,7 @@
   "main": "dist/index",
   "scripts": {
     "start": "node dist/index",
-    "postinstall": "node node_modules/typescript/bin/tsc",
+    "postinstall": "typings install && tsc",
     "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts"
   },
   "repository": {
