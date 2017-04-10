@@ -4,7 +4,7 @@
   "description": "Microservice for domain 'weather'",
   "main": "dist/index",
   "scripts": {
-    "start": "node dist/index",
+    "start": "node index",
     "postinstall": "node node_modules/typescript/bin/tsc",
     "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts"
   },
