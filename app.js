@@ -29,7 +29,7 @@ class App {
         this.express.use('/api/v1/weather/newest', WeatherRouter_1.default);
     }
 }
-exports.App = App;
+exports.default = App;
 const PORT = normalizePort(process.env.PORT || 3000);
 const app = new App().express;
 app.set('port', PORT);

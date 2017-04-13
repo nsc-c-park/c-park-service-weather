@@ -7,7 +7,7 @@ import * as http from 'http';
 
 import WeatherRouter from './routes/WeatherRouter';
 
-export class App {
+export default class App {
     public express: express.Application;
 
     constructor() {
