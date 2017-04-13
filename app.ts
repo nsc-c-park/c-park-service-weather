@@ -1,34 +1,81 @@
-import * as debugFactory from 'debug';
-import * as http from 'http';
-import * as express from 'express';
-import * as path from 'path';
-import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as express from 'express';
+import * as logger from 'morgan';
+import * as path from 'path';
+import * as debug from 'debug';
+import * as http from 'http';
 
-import sampleRoute from './routes/sample';
+import WeatherRouter from './routes/WeatherRouter';
 
-let debug = debugFactory('app:server');
+export class App {
+    public express: express.Application;
 
-let staticsPath = __dirname;
+    constructor() {
+        this.express = express();
+        this.middleware();
+        this.routes();
+    }
 
-let app = express();
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(staticsPath, 'public')));
+    private middleware(): void {
+        this.express.use(logger('dev'));
+        this.express.use(bodyParser.json());
+        this.express.use(bodyParser.urlencoded({ extended: false }));
+    }
 
-let port = process.env.PORT || 3000;
+    private routes(): void {
+            let router = express.Router();
+    router.get('/', (req, res, next) => {
+      res.json({
+        message: 'Hello World!'
+      });
+    });
+    this.express.use('/', router);
+    this.express.use('/api/v1/weather', WeatherRouter);
+    this.express.use('/api/v1/weather/newest', WeatherRouter);
+    }
+}
 
-app.set('port', port);
+const PORT = normalizePort(process.env.PORT || 3000);
+const app = new App().express;
+app.set('port', PORT);
 
-app.use('/', sampleRoute);
+const server = http.createServer(app);
+server.listen(PORT);
+server.on('error', onError);
+server.on('listening', onListening);
 
-var server = http.createServer(app);
-server.listen(port);
-server.on('error', function(err) {
-console.error(err);
-});
-server.on('listening', function () {
-var port = server.address().port;
-debug('Listening on ' + port);
-});
+function normalizePort(val: number | string): number | string | boolean {
+    const port: number = (typeof val === 'string') ? parseInt(val, 10) : val;
+    if (isNaN(port)) {
+        return val;
+    } else if (port >= 0) {
+        return port;
+    } else {
+        return false;
+    }
+}
+
+function onError(error: NodeJS.ErrnoException): void {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+    const bind = (typeof PORT === 'string') ? 'Pipe ' + PORT : 'Port ' + PORT;
+    switch (error.code) {
+        case 'EACCES':
+            console.error(`${bind} requires elevated privileges`);
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(`${bind} is already in use`);
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+function onListening(): void {
+    const addr = server.address();
+    const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
+    debug(`Listening on ${bind}`);
+}

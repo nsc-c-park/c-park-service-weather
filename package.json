@@ -4,6 +4,8 @@
   "description": "Microservice for domain 'weather'",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "postinstall": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,9 +22,12 @@
     "body-parser": "^1.17.1",
     "debug": "^2.6.3",
     "express": "^4.15.2",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "mssql": "^4.0.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
+    "@types/node": "^7.0.12",
     "typescript": "^2.2.2",
     "typings": "^2.1.1"
   }
