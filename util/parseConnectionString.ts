@@ -8,7 +8,6 @@ export function parseConnectionString(connectionString) {
         }
     });
 
-    // extract host and port from 'Data Source'
     let server;
     let port;
     const dataSource = result['Server'];
