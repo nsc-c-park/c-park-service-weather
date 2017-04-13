@@ -1,13 +1,8 @@
 {
-    "compilerOptions": {
-        "module": "amd",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "outFile": "dist/app.js",
-        "sourceMap": true
-    },
-    "files": [
-        "src/app.ts"
-    ]
+"compilerOptions": {
+"module": "commonjs"
+},
+"exclude": [
+"node_modules"
+]
 }

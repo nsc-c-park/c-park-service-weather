@@ -1,14 +1,29 @@
 {
-  "name": "tsc-postinstall",
+  "name": "c-park-service-weather",
   "version": "1.0.0",
-  "description": "sample project that compiles TypeScript files after installing npm modules",
-  "main": "dist/app.js",
+  "description": "Microservice for domain 'weather'",
+  "main": "app.js",
   "scripts": {
-    "postinstall": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "jj09",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsc-c-park/c-park-service-weather.git"
+  },
+  "author": "Krzysztof Samson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nsc-c-park/c-park-service-weather/issues"
+  },
+  "homepage": "https://github.com/nsc-c-park/c-park-service-weather#readme",
   "dependencies": {
-    "typescript": "^1.8.10"
+    "body-parser": "^1.17.1",
+    "debug": "^2.6.3",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^2.2.2",
+    "typings": "^2.1.1"
   }
 }
