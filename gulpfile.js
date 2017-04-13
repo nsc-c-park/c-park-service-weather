@@ -1,18 +1,18 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
-const cleanup = require('gulp-cleanup-dest');
 
-const tsc = ts.createProject('tsconfig.json');
+// pull in the project TypeScript config
+const tsProject = ts.createProject('src/tsconfig.json');
 
 gulp.task('scripts', () => {
-    return tsc.src()
-        .pipe(cleanup({ dest: 'dist', ext: '.js' }))
-        .pipe(tsc())
-        .pipe(gulp.dest('dist'));
+  const tsResult = tsProject.src()
+  .pipe(tsProject());
+  return tsResult.js.pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', ['scripts'], () => {
-    gulp.watch('src/**/*.ts', ['scripts']);
+  gulp.watch('src/**/*.ts', ['scripts']);
 });
+
 
 gulp.task('default', ['watch']);
